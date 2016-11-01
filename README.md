@@ -1,0 +1,2 @@
+# namiyao.github.io
+Blog
