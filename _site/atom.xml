@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
- <title>Lanyon</title>
+ <title>Namiyao Blog</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2016-11-03T13:31:36+08:00</updated>
+ <updated>2016-11-04T19:16:05+08:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Mark Otto</name>
