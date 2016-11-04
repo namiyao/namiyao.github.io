@@ -11,7 +11,7 @@ DDPG算法与代码解析参考[Deep Deterministic Policy Gradients in TensorFlo
 
 TNPG与TRPO算法的区别仅在于TRPO用了Backtracking line search来确定步长，从而使目标函数有足够的优化，而TNPG并没有使用Backtracking line search。本文对TRPO算法与代码进行解析，TNPG只需要去掉Backtracking line search这一步即可。
 
-关于TRPO算法的文章主要有两篇。文章[Trust Region Policy Optimization][TRPO Artical]提出了TRPO算法。文章[HIGH-DIMENSIONAL CONTINUOUS CONTROL USING GENERALIZED ADVANTAGE ESTIMATION][TRPO GAE Artical]使用Generalized Advantage Estimator (GAE)改进了TRPO算法。
+关于TRPO算法的文章主要有两篇。文章[Trust Region Policy Optimization][TRPO Artical]提出了TRPO算法。文章[High-Dimensional Continuous Control using Generalized Advantage Estimation][TRPO GAE Artical]使用Generalized Advantage Estimator (GAE)改进了TRPO算法。
 
 本文使用Wojciech Zaremba的基于Tensorflow的[代码][TRPO Code]。
 
@@ -19,8 +19,9 @@ TNPG与TRPO算法的区别仅在于TRPO用了Backtracking line search来确定�
 
 ## Policy Gradients
 我们用函数来近似策略函数，记作 $\pi_{\theta}(a|s)$。目标函数为expected discounted reward，
-$$J(\theta)=E[\sum_{t=0}^{\infty}\gamma^{t}r_{t}]$$
 
+$$J(\theta)=E[\sum_{t=0}^{\infty}\gamma^{t}r_{t}]$$
+要最大化目标函数，最直接的想法就是使用梯度下降算法
 
 
 ## Advantage Function Estimation
