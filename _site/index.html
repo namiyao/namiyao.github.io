@@ -27,6 +27,9 @@
 
   <!-- RSS -->
   <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- Mathjax -->
+  <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 </head>
 
 
@@ -44,7 +47,7 @@
 
   <nav class="sidebar-nav">
     <a class="sidebar-nav-item" href="/">Home</a>
-
+<!--
     
 
     
@@ -69,6 +72,8 @@
     <a class="sidebar-nav-item" href="/archive/v1.0.0.zip">Download</a>
     <a class="sidebar-nav-item" href="">GitHub project</a>
     <span class="sidebar-nav-item">Currently v1.0.0</span>
+
+-->
   </nav>
 
   <div class="sidebar-item">
@@ -93,6 +98,40 @@
 
       <div class="container content">
         <div class="posts">
+  
+  <div class="post">
+    <h1 class="post-title">
+      <a href="//2016/11/03/trpo-code-analysis/">
+        TRPO算法与代码解析
+      </a>
+    </h1>
+
+    <span class="post-date">03 Nov 2016</span>
+
+    <h1 id="introduction">Introduction</h1>
+<p><a href="http://karpathy.github.io/2016/05/31/rl/">Andrej Karpathy</a>指出，Policy Gradients (PG)是default的Reinforcement Learning (RL)算法。文章<a href="https://arxiv.org/abs/1604.06778">Benchmarking Deep Reinforcement Learning for Continuous Control</a>指出，Truncated Natural Policy Gradient (TNPG)算法，Trust Region Policy Optimization (TRPO)算法，Deep Deterministic Policy Gradient (DDPG)算法取得了最好的实验结果。除此之外，文章中未提到的
+<a href="https://arxiv.org/abs/1602.01783">Asynchronous Advantage Actor-Critic (A3C)</a>算法的表现也超过了DQN。以上四种算法均属于PG。</p>
+
+<p>DDPG算法与代码解析参考<a href="http://pemami4911.github.io/blog/2016/08/21/ddpg-rl.html">Deep Deterministic Policy Gradients in TensorFlow</a>。</p>
+
+<p>TNPG与TRPO算法的区别仅在于TRPO用了Backtracking line search来确定步长，从而使目标函数有足够的优化，而TNPG并没有使用Backtracking line search。本文对TRPO算法与代码进行解析，TNPG只需要去掉Backtracking line search这一步即可。</p>
+
+<p>关于TRPO算法的文章主要有两篇。文章<a href="https://arxiv.org/abs/1502.05477">Trust Region Policy Optimization</a>提出了TRPO算法。文章<a href="https://arxiv.org/abs/1506.02438">HIGH-DIMENSIONAL CONTINUOUS CONTROL USING GENERALIZED ADVANTAGE ESTIMATION</a>使用Generalized Advantage Estimator (GAE)改进了TRPO算法。</p>
+
+<p>本文使用Wojciech Zaremba的基于Tensorflow的<a href="https://github.com/wojzaremba/trpo">代码</a>。</p>
+
+<h1 id="start-with-some-theory">Start with some Theory</h1>
+
+<h2 id="policy-gradients">Policy Gradients</h2>
+<p>我们用函数来近似策略函数，记作 $\pi_{\theta}(a|s)$。目标函数为expected discounted reward，
+<script type="math/tex">J(\theta)=E[\sum_{t=0}^{\infty}\gamma^{t}r_{t}]</script></p>
+
+<h2 id="advantage-function-estimation">Advantage Function Estimation</h2>
+
+<h1 id="show-me-the-code">Show me the Code!</h1>
+
+
+  </div>
   
   <div class="post">
     <h1 class="post-title">

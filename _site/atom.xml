@@ -4,13 +4,43 @@
  <title>Namiyao Blog</title>
  <link href="http://localhost:4000/atom.xml" rel="self"/>
  <link href="http://localhost:4000/"/>
- <updated>2016-11-04T19:16:05+08:00</updated>
+ <updated>2016-11-04T20:35:31+08:00</updated>
  <id>http://localhost:4000</id>
  <author>
    <name>Mark Otto</name>
    <email>markdotto@gmail.com</email>
  </author>
 
+ 
+ <entry>
+   <title>TRPO算法与代码解析</title>
+   <link href="http://localhost:4000/2016/11/03/trpo-code-analysis/"/>
+   <updated>2016-11-03T00:00:00+08:00</updated>
+   <id>http://localhost:4000/2016/11/03/trpo-code-analysis</id>
+   <content type="html">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;http://karpathy.github.io/2016/05/31/rl/&quot;&gt;Andrej Karpathy&lt;/a&gt;指出，Policy Gradients (PG)是default的Reinforcement Learning (RL)算法。文章&lt;a href=&quot;https://arxiv.org/abs/1604.06778&quot;&gt;Benchmarking Deep Reinforcement Learning for Continuous Control&lt;/a&gt;指出，Truncated Natural Policy Gradient (TNPG)算法，Trust Region Policy Optimization (TRPO)算法，Deep Deterministic Policy Gradient (DDPG)算法取得了最好的实验结果。除此之外，文章中未提到的
+&lt;a href=&quot;https://arxiv.org/abs/1602.01783&quot;&gt;Asynchronous Advantage Actor-Critic (A3C)&lt;/a&gt;算法的表现也超过了DQN。以上四种算法均属于PG。&lt;/p&gt;
+
+&lt;p&gt;DDPG算法与代码解析参考&lt;a href=&quot;http://pemami4911.github.io/blog/2016/08/21/ddpg-rl.html&quot;&gt;Deep Deterministic Policy Gradients in TensorFlow&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;TNPG与TRPO算法的区别仅在于TRPO用了Backtracking line search来确定步长，从而使目标函数有足够的优化，而TNPG并没有使用Backtracking line search。本文对TRPO算法与代码进行解析，TNPG只需要去掉Backtracking line search这一步即可。&lt;/p&gt;
+
+&lt;p&gt;关于TRPO算法的文章主要有两篇。文章&lt;a href=&quot;https://arxiv.org/abs/1502.05477&quot;&gt;Trust Region Policy Optimization&lt;/a&gt;提出了TRPO算法。文章&lt;a href=&quot;https://arxiv.org/abs/1506.02438&quot;&gt;HIGH-DIMENSIONAL CONTINUOUS CONTROL USING GENERALIZED ADVANTAGE ESTIMATION&lt;/a&gt;使用Generalized Advantage Estimator (GAE)改进了TRPO算法。&lt;/p&gt;
+
+&lt;p&gt;本文使用Wojciech Zaremba的基于Tensorflow的&lt;a href=&quot;https://github.com/wojzaremba/trpo&quot;&gt;代码&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h1 id=&quot;start-with-some-theory&quot;&gt;Start with some Theory&lt;/h1&gt;
+
+&lt;h2 id=&quot;policy-gradients&quot;&gt;Policy Gradients&lt;/h2&gt;
+&lt;p&gt;我们用函数来近似策略函数，记作 $\pi_{\theta}(a|s)$。目标函数为expected discounted reward，
+&lt;script type=&quot;math/tex&quot;&gt;J(\theta)=E[\sum_{t=0}^{\infty}\gamma^{t}r_{t}]&lt;/script&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;advantage-function-estimation&quot;&gt;Advantage Function Estimation&lt;/h2&gt;
+
+&lt;h1 id=&quot;show-me-the-code&quot;&gt;Show me the Code!&lt;/h1&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>Introducing Lanyon</title>
