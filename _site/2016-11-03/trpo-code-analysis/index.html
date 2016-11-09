@@ -13,24 +13,24 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
 
-  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Kiko Plus" href="/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Namiyao" href="/feed.xml" />
   <!-- Begin Jekyll SEO tag v2.0.0 -->
-<title>TRPO算法与代码解析 - Kiko Plus</title>
+<title>TRPO算法与代码解析 - Namiyao</title>
 <meta property="og:title" content="TRPO算法与代码解析" />
-<meta name="description" content="IntroductionAndrej Karpathy指出，Policy Gradients (PG)是default的Reinforcement Learning (RL)算法。文章Benchmarking Deep Reinforcement Learning for Continuous Control指出，Truncated Natural Policy Gradient (TNPG)算法，Trust Region Policy Optimization (TRPO)算法，Deep Deterministic Policy Gradient (DDPG)算法取得了最好的实验结果。除此之外，文章中未提到的Asynchronous Advantage Actor-Critic (A3C)算法的表现也超过了DQN。以上四种算法均属于PG。" />
-<meta property="og:description" content="IntroductionAndrej Karpathy指出，Policy Gradients (PG)是default的Reinforcement Learning (RL)算法。文章Benchmarking Deep Reinforcement Learning for Continuous Control指出，Truncated Natural Policy Gradient (TNPG)算法，Trust Region Policy Optimization (TRPO)算法，Deep Deterministic Policy Gradient (DDPG)算法取得了最好的实验结果。除此之外，文章中未提到的Asynchronous Advantage Actor-Critic (A3C)算法的表现也超过了DQN。以上四种算法均属于PG。" />
+<meta name="description" content="推导Trust Region Policy Optimization算法，结合Tensorflow代码讲解算法实现细节" />
+<meta property="og:description" content="推导Trust Region Policy Optimization算法，结合Tensorflow代码讲解算法实现细节" />
 <link rel="canonical" href="http://localhost:4000/2016-11-03/trpo-code-analysis/" />
 <meta property="og:url" content="http://localhost:4000/2016-11-03/trpo-code-analysis/" />
-<meta property="og:site_name" content="Kiko Plus" />
+<meta property="og:site_name" content="Namiyao" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2016-11-03T00:00:00+09:00" />
+<meta property="article:published_time" content="2016-11-03T00:00:00+08:00" />
 <script type="application/ld+json">
   {
     "@context": "http://schema.org",
     "@type": "BlogPosting",
     "headline": "TRPO算法与代码解析",
-    "datePublished": "2016-11-03T00:00:00+09:00",
-    "description": "IntroductionAndrej Karpathy指出，Policy Gradients (PG)是default的Reinforcement Learning (RL)算法。文章Benchmarking Deep Reinforcement Learning for Continuous Control指出，Truncated Natural Policy Gradient (TNPG)算法，Trust Region Policy Optimization (TRPO)算法，Deep Deterministic Policy Gradient (DDPG)算法取得了最好的实验结果。除此之外，文章中未提到的Asynchronous Advantage Actor-Critic (A3C)算法的表现也超过了DQN。以上四种算法均属于PG。",
+    "datePublished": "2016-11-03T00:00:00+08:00",
+    "description": "推导Trust Region Policy Optimization算法，结合Tensorflow代码讲解算法实现细节",
     "url": "http://localhost:4000/2016-11-03/trpo-code-analysis/"
   }
 </script>
@@ -51,14 +51,21 @@ ga('send', 'pageview');
 </script>
 
 
-
+  
+  <!-- Mathjax -->
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+  <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 </head>
 
 <body>
   <div class="content-container">
     <header>
   <h1 class="header-small">
-    <a href="http://localhost:4000">Kiko Plus</a>
+    <a href="http://localhost:4000">Namiyao</a>
   </h1>
 </header>
 <div class="post">
@@ -137,7 +144,7 @@ ga('send', 'pageview');
 
 <script type="math/tex; mode=display">\min_{\phi}\sum_{n=1}^{N}\sum_{t=0}^{\infty}(\hat V(s_{t})-V_{\phi}(s_{t}))^2</script>
 
-<p>其中 $\hat V(s_{t})=\sum_{l=0}^{\infty}\gamma^{l}r_{t+l}$。可以通过<a href="http://sebastianruder.com/optimizing-gradient-descent/index.html">mini-batch gradient descent optimization algorithms</a>或者<a href="https://www.youtube.com/watch?v=P0Rhzv9GfYs">trust region method</a>来更新参数 $\phi$。</p>
+<p>其中 $\hat V(s_{t})=\sum_{l=0}^{\infty}\gamma^{l}r_{t+l}$。可以通过<a href="http://sebastianruder.com/optimizing-gradient-descent/index.html">mini-batch gradient descent optimization algorithms</a>或者<a href="https://www.youtube.com/watch?v=P0Rhzv9GfYs">trust region method</a>来更新参数 $\phi$。下面代码使用第一种优化方法。</p>
 
 <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">VF</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="n">coeffs</span> <span class="o">=</span> <span class="bp">None</span>
@@ -355,7 +362,6 @@ L_{\theta_{old}}(\theta_{old})&=J(\theta_{old})+E_{\pi_{\theta_{old}}}[A_{\pi_{\
 </code></pre>
 </div>
 
-<hr />
 
 
 
@@ -394,7 +400,7 @@ this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your pag
 */
 (function() { // DON'T EDIT BELOW THIS LINE
 var d = document, s = d.createElement('script');
-s.src = '//your-id.disqus.com/embed.js';
+s.src = '//namiyao.disqus.com/embed.js';
 s.setAttribute('data-timestamp', +new Date());
 (d.head || d.body).appendChild(s);
 })();
@@ -411,35 +417,24 @@ s.setAttribute('data-timestamp', +new Date());
 	<hr />
 	<div class="footer-link">
 		
-		<a href="https://www.facebook.com/your-id"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+
 		
 
 		
-		<a href="https://twitter.com/your-id"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+
 		
 
 		
-		<a href="https://github.com/your-id"><i class="fa fa-github" aria-hidden="true"></i></a>
+
 		
 
 		
-		<a href="https://www.linkedin.com/in/your-id"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-		
-
-		
-		<a href="https://medium.com/@your-id"><i class="fa fa-medium" aria-hidden="true"></i></a>
-		
-
-		
-		<a href="https://your-id.tumblr.com"><i class="fa fa-tumblr" aria-hidden="true"></i></a>
-		
-
-		
-		<a href="mailto:your-id@your-email.com"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+		<a href="mailto:disneydsy@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i></a>
 		
 
 	</div>
-	© 2016 your-name. All rights reserved.
+<!--	© 2016 Namiyao. All rights reserved.   -->
+	Namiyao
 </div>
 
   </div>

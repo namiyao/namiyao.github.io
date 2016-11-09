@@ -3,19 +3,19 @@
 # # # # # # # # # # # # #
 
 # Basic
-name:               "Kiko Plus"
+name:               "Namiyao"
 
 
 
 author:
-  name:             your-name
-  facebook:         your-id
-  twitter:          your-id
-  github:           your-id
-  linkedin:         your-id
-  medium:           your-id
-  tumblr:           your-id
-  email:            your-id@your-email.com
+  name:             Namiyao
+#  facebook:         your-id
+#  twitter:          your-id
+#  github:           your-id
+#  linkedin:         your-id
+#  medium:           your-id
+#  tumblr:           your-id
+  email:            disneydsy@gmail.com
 
 # Google-analytics
 google-analytics:
@@ -23,16 +23,16 @@ google-analytics:
 
 # Disqus
 disqus:
-  id:               "your-id"
+  id:               "namiyao"
 
 # URL
-#url:                "https://AWEEKJ.github.io" # the base hostname & protocol for your site
+#url:                "https://namiyao.github.io" # the base hostname & protocol for your site
 url:                "http://localhost:4000" # use this url when develop
 baseurl:            "" # the subpath of your site, e.g. /blog
 
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-timezone:           Asia/Seoul
+timezone:           Asia/Shanghai
 permalink:          /:year-:month-:day/:title/
 
 # Pagination
@@ -48,12 +48,12 @@ kramdown:
 nav:
   - name:           "About"
     url:            "/about"
-  - name:           "Archive"
-    url:            "/archive"
-  - name:           "Tags"
-    url:            "/tags"
-  - name:           "Github"
-    url:            "https://github.com/AWEEKJ/Kiko-plus"
+#  - name:           "Archive"
+#    url:            "/archive"
+#  - name:           "Tags"
+#    url:            "/tags"
+#  - name:           "Github"
+#    url:            "https://github.com/namiyao/namiyao.github.io"
 
 
 

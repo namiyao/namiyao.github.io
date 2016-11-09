@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
 	<channel>
-		<title>Kiko Plus</title>
+		<title>Namiyao</title>
 		<link>http://localhost:4000</link>
 		<atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
 		
@@ -72,7 +72,7 @@
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\min_{\phi}\sum_{n=1}^{N}\sum_{t=0}^{\infty}(\hat V(s_{t})-V_{\phi}(s_{t}))^2&lt;/script&gt;
 
-&lt;p&gt;其中 $\hat V(s_{t})=\sum_{l=0}^{\infty}\gamma^{l}r_{t+l}$。可以通过&lt;a href=&quot;http://sebastianruder.com/optimizing-gradient-descent/index.html&quot;&gt;mini-batch gradient descent optimization algorithms&lt;/a&gt;或者&lt;a href=&quot;https://www.youtube.com/watch?v=P0Rhzv9GfYs&quot;&gt;trust region method&lt;/a&gt;来更新参数 $\phi$。&lt;/p&gt;
+&lt;p&gt;其中 $\hat V(s_{t})=\sum_{l=0}^{\infty}\gamma^{l}r_{t+l}$。可以通过&lt;a href=&quot;http://sebastianruder.com/optimizing-gradient-descent/index.html&quot;&gt;mini-batch gradient descent optimization algorithms&lt;/a&gt;或者&lt;a href=&quot;https://www.youtube.com/watch?v=P0Rhzv9GfYs&quot;&gt;trust region method&lt;/a&gt;来更新参数 $\phi$。下面代码使用第一种优化方法。&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;VF&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;coeffs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;None&lt;/span&gt;
@@ -290,9 +290,8 @@ L_{\theta_{old}}(\theta_{old})&amp;=J(\theta_{old})+E_{\pi_{\theta_{old}}}[A_{\p
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;hr /&gt;
 </description>
-				<pubDate>Thu, 03 Nov 2016 00:00:00 +0900</pubDate>
+				<pubDate>Thu, 03 Nov 2016 00:00:00 +0800</pubDate>
 				<link>http://localhost:4000/2016-11-03/trpo-code-analysis/</link>
 				<guid isPermaLink="true">http://localhost:4000/2016-11-03/trpo-code-analysis/</guid>
 			</item>
@@ -432,7 +431,7 @@ L_{\theta_{old}}(\theta_{old})&amp;=J(\theta_{old})+E_{\pi_{\theta_{old}}}[A_{\p
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </description>
-				<pubDate>Mon, 15 Aug 2016 00:00:00 +0900</pubDate>
+				<pubDate>Mon, 15 Aug 2016 00:00:00 +0800</pubDate>
 				<link>http://localhost:4000/2016-08-15/style-test/</link>
 				<guid isPermaLink="true">http://localhost:4000/2016-08-15/style-test/</guid>
 			</item>
@@ -511,7 +510,7 @@ L_{\theta_{old}}(\theta_{old})&amp;=J(\theta_{old})+E_{\pi_{\theta_{old}}}[A_{\p
   &lt;/ol&gt;
 &lt;/div&gt;
 </description>
-				<pubDate>Fri, 16 Aug 2013 00:00:00 +0900</pubDate>
+				<pubDate>Fri, 16 Aug 2013 00:00:00 +0800</pubDate>
 				<link>http://localhost:4000/2013-08-16/code-highlighting-post/</link>
 				<guid isPermaLink="true">http://localhost:4000/2013-08-16/code-highlighting-post/</guid>
 			</item>
@@ -520,7 +519,7 @@ L_{\theta_{old}}(\theta_{old})&amp;=J(\theta_{old})+E_{\pi_{\theta_{old}}}[A_{\p
 				<title>Sample Link Post</title>
         <description>
 </description>
-				<pubDate>Mon, 12 Aug 2013 00:00:00 +0900</pubDate>
+				<pubDate>Mon, 12 Aug 2013 00:00:00 +0800</pubDate>
 				<link>http://localhost:4000/2013-08-12/sample-link-post/</link>
 				<guid isPermaLink="true">http://localhost:4000/2013-08-12/sample-link-post/</guid>
 			</item>
@@ -568,7 +567,7 @@ L_{\theta_{old}}(\theta_{old})&amp;=J(\theta_{old})+E_{\pi_{\theta_{old}}}[A_{\p
 
 &lt;p&gt;Aliquip enim artisan dolor post-ironic. Pug tote bag Marfa, deserunt pour-over Portland wolf eu odio intelligentsia american apparel ugh ea. Sunt viral et, 3 wolf moon gastropub pug id. Id fashion axe est typewriter, mlkshk Portland art party aute brunch. Sint pork belly Cosby sweater, deep v mumblecore kitsch american apparel. Try-hard direct trade tumblr sint skateboard. Adipisicing bitters excepteur biodiesel, pickled gastropub aute veniam.&lt;/p&gt;
 </description>
-				<pubDate>Tue, 22 May 2012 00:00:00 +0900</pubDate>
+				<pubDate>Tue, 22 May 2012 00:00:00 +0800</pubDate>
 				<link>http://localhost:4000/2012-05-22/readability-post/</link>
 				<guid isPermaLink="true">http://localhost:4000/2012-05-22/readability-post/</guid>
 			</item>

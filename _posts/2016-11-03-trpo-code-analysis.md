@@ -1,6 +1,11 @@
 ---
 layout: post
 title: TRPO算法与代码解析
+description: "推导Trust Region Policy Optimization算法，结合Tensorflow代码讲解算法实现细节"
+date: 2016-11-03
+tags: []
+comments: true
+share: true
 ---
 
 # Introduction
@@ -66,7 +71,7 @@ $$\begin{align}
 
 $$\min_{\phi}\sum_{n=1}^{N}\sum_{t=0}^{\infty}(\hat V(s_{t})-V_{\phi}(s_{t}))^2$$
 
-其中 $\hat V(s_{t})=\sum_{l=0}^{\infty}\gamma^{l}r_{t+l}$。可以通过[mini-batch gradient descent optimization algorithms][gradient descent optimization algorithms Blog]或者[trust region method][trust region method video]来更新参数 $\phi$。
+其中 $\hat V(s_{t})=\sum_{l=0}^{\infty}\gamma^{l}r_{t+l}$。可以通过[mini-batch gradient descent optimization algorithms][gradient descent optimization algorithms Blog]或者[trust region method][trust region method video]来更新参数 $\phi$。下面代码使用第一种优化方法。
 
 ```python
 class VF(object):
@@ -307,5 +312,3 @@ self.sff(theta)
 [conjugate gradient method wiki]:https://en.wikipedia.org/wiki/Conjugate_gradient_method
 [Conjugate Gradient Algorithm Image]:https://wikimedia.org/api/rest_v1/media/math/render/svg/e300dfefdbd374cdee765397528a65a5736a50d3
 [Backtracking line search Blog]:http://www.cnblogs.com/kemaswill/p/3416231.html
-
----------------
