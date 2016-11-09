@@ -6,6 +6,15 @@
 		<atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Conjugate Gradient Algorithm without Pain</title>
+        <description>
+</description>
+				<pubDate>Wed, 09 Nov 2016 00:00:00 +0800</pubDate>
+				<link>http://localhost:4000/2016-11-09/conjugate-gradient/</link>
+				<guid isPermaLink="true">http://localhost:4000/2016-11-09/conjugate-gradient/</guid>
+			</item>
+		
+			<item>
 				<title>TRPO算法与代码解析</title>
         <description>&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
 &lt;p&gt;&lt;a href=&quot;http://karpathy.github.io/2016/05/31/rl/&quot;&gt;Andrej Karpathy&lt;/a&gt;指出，Policy Gradients (PG)是default的Reinforcement Learning (RL)算法。文章&lt;a href=&quot;https://arxiv.org/abs/1604.06778&quot;&gt;Benchmarking Deep Reinforcement Learning for Continuous Control&lt;/a&gt;指出，Truncated Natural Policy Gradient (TNPG)算法，Trust Region Policy Optimization (TRPO)算法，Deep Deterministic Policy Gradient (DDPG)算法取得了最好的实验结果。除此之外，文章中未提到的
