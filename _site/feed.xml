@@ -184,7 +184,7 @@
 
 &lt;p&gt;下一节将结合代码详细讲解TRPO算法。&lt;/p&gt;
 
-&lt;h2 id=&quot;trpo&quot;&gt;TRPO&lt;/h2&gt;
+&lt;h2 id=&quot;trust-region-policy-optimization&quot;&gt;Trust Region Policy Optimization&lt;/h2&gt;
 &lt;p&gt;当使用&lt;a href=&quot;http://sebastianruder.com/optimizing-gradient-descent/index.html&quot;&gt;mini-batch gradient descent optimization algorithms&lt;/a&gt;来更新参数时，需要给定learning rate，i.e. step size。PG算法中的step size的选取是极其重要的！因为step size决定了下一次抽样的策略函数，如果step size选的不好，下一次的mini-batch就会从很差的策略里产生。不同于supervise learning，因为训练样本早就确定了，即使这次step size步子扯大了，下个mini-batch还能扯回来。现在的难点在于PG算法只给出了梯度的估计，并没有目标函数可以用来进行&lt;a href=&quot;https://en.wikipedia.org/wiki/Line_search&quot;&gt;line search&lt;/a&gt;以确定好的step size。借鉴&lt;a href=&quot;https://www.youtube.com/watch?v=P0Rhzv9GfYs&quot;&gt;trust region method&lt;/a&gt;的想法，如果可以给出目标函数 $J(\theta)$ 的局部近似函数，这个函数在trust region中是目标函数的一个很好的近似, 那就可以在trust region中最大化近似函数来更新参数 $\theta$。&lt;/p&gt;
 
 &lt;p&gt;令&lt;/p&gt;
@@ -413,7 +413,7 @@ L_{\theta_{old}}(\theta_{old})&amp;=J(\theta_{old})+E_{\pi_{\theta_{old}}}[A_{\p
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;至此TRPO算法全部推导完成啦！下面的代码是完整的训练过程。&lt;/p&gt;
+&lt;p&gt;下面的代码是完整的训练过程。&lt;/p&gt;
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TRPOAgent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
 
@@ -517,6 +517,8 @@ L_{\theta_{old}}(\theta_{old})&amp;=J(\theta_{old})+E_{\pi_{\theta_{old}}}[A_{\p
             &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
+
+&lt;p&gt;至此TRPO算法全部推导完成啦！更多代码细节可以&lt;a href=&quot;https://github.com/wojzaremba/trpo&quot;&gt;查看完整代码&lt;/a&gt;。&lt;/p&gt;
 
 </description>
 				<pubDate>Wed, 09 Nov 2016 00:00:00 +0800</pubDate>

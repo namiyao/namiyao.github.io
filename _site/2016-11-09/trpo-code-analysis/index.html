@@ -256,7 +256,7 @@ MathJax.Hub.Config({
 
 <p>下一节将结合代码详细讲解TRPO算法。</p>
 
-<h2 id="trpo">TRPO</h2>
+<h2 id="trust-region-policy-optimization">Trust Region Policy Optimization</h2>
 <p>当使用<a href="http://sebastianruder.com/optimizing-gradient-descent/index.html">mini-batch gradient descent optimization algorithms</a>来更新参数时，需要给定learning rate，i.e. step size。PG算法中的step size的选取是极其重要的！因为step size决定了下一次抽样的策略函数，如果step size选的不好，下一次的mini-batch就会从很差的策略里产生。不同于supervise learning，因为训练样本早就确定了，即使这次step size步子扯大了，下个mini-batch还能扯回来。现在的难点在于PG算法只给出了梯度的估计，并没有目标函数可以用来进行<a href="https://en.wikipedia.org/wiki/Line_search">line search</a>以确定好的step size。借鉴<a href="https://www.youtube.com/watch?v=P0Rhzv9GfYs">trust region method</a>的想法，如果可以给出目标函数 $J(\theta)$ 的局部近似函数，这个函数在trust region中是目标函数的一个很好的近似, 那就可以在trust region中最大化近似函数来更新参数 $\theta$。</p>
 
 <p>令</p>
@@ -485,7 +485,7 @@ L_{\theta_{old}}(\theta_{old})&=J(\theta_{old})+E_{\pi_{\theta_{old}}}[A_{\pi_{\
 </code></pre>
 </div>
 
-<p>至此TRPO算法全部推导完成啦！下面的代码是完整的训练过程。</p>
+<p>下面的代码是完整的训练过程。</p>
 
 <div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">TRPOAgent</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
@@ -589,6 +589,8 @@ L_{\theta_{old}}(\theta_{old})&=J(\theta_{old})+E_{\pi_{\theta_{old}}}[A_{\pi_{\
             <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
 </code></pre>
 </div>
+
+<p>至此TRPO算法全部推导完成啦！更多代码细节可以<a href="https://github.com/wojzaremba/trpo">查看完整代码</a>。</p>
 
 
 

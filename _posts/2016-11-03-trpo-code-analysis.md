@@ -183,7 +183,7 @@ if self.train:
 
 下一节将结合代码详细讲解TRPO算法。
 
-## TRPO
+## Trust Region Policy Optimization
 当使用[mini-batch gradient descent optimization algorithms][gradient descent optimization algorithms Blog]来更新参数时，需要给定learning rate，i.e. step size。PG算法中的step size的选取是极其重要的！因为step size决定了下一次抽样的策略函数，如果step size选的不好，下一次的mini-batch就会从很差的策略里产生。不同于supervise learning，因为训练样本早就确定了，即使这次step size步子扯大了，下个mini-batch还能扯回来。现在的难点在于PG算法只给出了梯度的估计，并没有目标函数可以用来进行[line search][line search wiki]以确定好的step size。借鉴[trust region method][trust region method video]的想法，如果可以给出目标函数 $J(\theta)$ 的局部近似函数，这个函数在trust region中是目标函数的一个很好的近似, 那就可以在trust region中最大化近似函数来更新参数 $\theta$。
 
 令
@@ -405,7 +405,7 @@ theta = linesearch(loss, thprev, fullstep, neggdotstepdir / lm)
 self.sff(theta)
 ```
 
-至此TRPO算法全部推导完成啦！下面的代码是完整的训练过程。
+下面的代码是完整的训练过程。
 
 ```python
 class TRPOAgent(object):
@@ -510,7 +510,7 @@ class TRPOAgent(object):
             i += 1
 ```
 
-
+至此TRPO算法全部推导完成啦！更多代码细节可以[查看完整代码][TRPO Code]。
 
 
 
