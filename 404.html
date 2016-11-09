@@ -1,39 +1,12 @@
 ---
-permalink: /404.html
-sitemap: false
+layout: default
 ---
-
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>{{ site.name }} | Page not found</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  {% if site.blog_theme == "light" %}
-    {% stylesheet notfound-light %}
-  {% else %}
-    {% stylesheet notfound-dark %}
-  {% endif %}
-</head>
-<body>
-  <main role="main" class="notfound-wrapper">
-    <div class="notfound-content">
-      <h1><a href="{{ site.baseurl }}" title="Back to homepage">Chalk</a></h1>
-      <p>
-        Looks like you got lost. Let's get you back to the <a href="{{ site.baseurl }}">homepage</a>!
-      </p>
-    </div>
-  </main>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
-  <script>
-    WebFont.load({
-      google: {
-        families: ['Cormorant Garamond:700', 'Lato:300,400,700']
-      }
-    });
-  </script>
-</body>
-</html>
+<header>
+  <h1 class="header-small">
+    <a href="{{ site.baseurl }}">{{ site.name }}</a>
+  </h1>
+</header>
+<div class="page">
+  <h1 class="page-title">{{ page.title }}</h1>
+  <span>Sorry, but the page you were trying to view does not exist.</span>
+</div>

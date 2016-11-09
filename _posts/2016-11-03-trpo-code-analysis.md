@@ -66,7 +66,7 @@ $$\begin{align}
 
 $$\min_{\phi}\sum_{n=1}^{N}\sum_{t=0}^{\infty}(\hat V(s_{t})-V_{\phi}(s_{t}))^2$$
 
-其中 $\hat V(s_{t})=\sum_{l=0}^{\infty}\gamma^{l}r_{t+l}$。可以通过[mini-batch gradient descent optimization algorithms][gradient descent optimization algorithms Blog]或者[trust region method][trust region method video]来更新参数 $\phi$。下面代码使用第一种优化方法。
+其中 $\hat V(s_{t})=\sum_{l=0}^{\infty}\gamma^{l}r_{t+l}$。可以通过[mini-batch gradient descent optimization algorithms][gradient descent optimization algorithms Blog]或者[trust region method][trust region method video]来更新参数 $\phi$。
 
 ```python
 class VF(object):
