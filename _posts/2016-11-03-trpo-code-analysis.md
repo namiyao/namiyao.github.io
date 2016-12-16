@@ -41,7 +41,7 @@ $$\nabla_{\theta}J(\theta)=E_{\pi_{\theta}}[\nabla_{\theta}log\pi_{\theta}(a|s)A
 
 $$\widehat{\nabla_{\theta}J(\theta)}=\frac{1}{N}\sum_{n=1}^{N}\sum_{t=0}^{\infty}\hat A_{t}^{n}\nabla_{\theta}log\pi_\theta(a_{t}^{n}|s_{t}^{n})$$
 
-一个方法是用REINFORCE算法估计$A^{\pi_{\theta}}(s,a)$。下一节使用另一个方法，用函数近似 $V^{\pi_{\theta}}(s)$ 来估计 $A^{\pi_{\theta}}(s,a)$。
+一个方法是用MC算法估计$A^{\pi_{\theta}}(s,a)$。下一节使用另一个方法，用函数近似 $V^{\pi_{\theta}}(s)$ 来估计 $A^{\pi_{\theta}}(s,a)$。
 
 ## Advantage Function Estimation
 类似于 $TD(\lambda)$ 方法，以下都是 $A^{\pi_{\theta}}(s_{t},a_{t})$ 的估计
