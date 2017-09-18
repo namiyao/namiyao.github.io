@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Polygon-RNN Image Label Tool HandBook</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/assets/css/main.css" type="text/css">
+  <link rel="stylesheet" href="/assets/css/social-share-kit.css" type="text/css">
+
+  <!-- Font -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Namiyao" href="/feed.xml" />
+  <!-- Begin Jekyll SEO tag v2.0.0 -->
+<title>Polygon-RNN Image Label Tool HandBook - Namiyao</title>
+<meta property="og:title" content="Polygon-RNN Image Label Tool HandBook" />
+<meta name="description" content="基于Polygon-RNN的标注工具的使用手册" />
+<meta property="og:description" content="基于Polygon-RNN的标注工具的使用手册" />
+<link rel="canonical" href="http://localhost:4000/2017-09-18/ImgLabelToolTutorial/" />
+<meta property="og:url" content="http://localhost:4000/2017-09-18/ImgLabelToolTutorial/" />
+<meta property="og:site_name" content="Namiyao" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-09-18T00:00:00+08:00" />
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Polygon-RNN Image Label Tool HandBook",
+    "datePublished": "2017-09-18T00:00:00+08:00",
+    "description": "基于Polygon-RNN的标注工具的使用手册",
+    "url": "http://localhost:4000/2017-09-18/ImgLabelToolTutorial/"
+  }
+</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <!-- Google Analytics -->
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', '', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+
+  
+  <!-- Mathjax -->
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+  <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+</head>
+
+<body>
+  <div class="content-container">
+    <header>
+  <h1 class="header-small">
+    <a href="http://localhost:4000">Namiyao</a>
+  </h1>
+</header>
+<div class="post">
+  <h1 class="post-title">Polygon-RNN Image Label Tool HandBook</h1>
+  <span class="post-date">
+    <time>18 Sep 2017</time>
+  </span>
+  <div class="post-tag">
+    <ul>
+      
+    </ul>
+  </div>
+
+  <h2 id="section">使用方法</h2>
+
+<p>首先明确几个概念。 我们的目的是标注图中的object， 需要给出object的polygon和label。</p>
+
+<ul>
+  <li>选择待标注图像文件夹 【O】</li>
+  <li>人工模式生成polygon
+    <ul>
+      <li>生成polygon的点 【左击】</li>
+      <li>删除上个生成的点 【Backspace】</li>
+      <li>闭合polygon 【左击第一个点】</li>
+    </ul>
+  </li>
+  <li>人工模式修改闭合的polygon
+    <ul>
+      <li>移动一个点 【按住鼠标左键并拖动该点】</li>
+      <li>添加一个点 【在边缘上左击】</li>
+      <li>删除一个点 【Shift + 左击该点】</li>
+    </ul>
+  </li>
+  <li>polygon-RNN模式生成并修改polygon
+    <ul>
+      <li>进入Polygon-RNN模式 【P】</li>
+      <li>给定目标周围的bbox 【按住鼠标左键并拖动】</li>
+      <li>移动一个点 【按住鼠标左键并拖动该点】</li>
+      <li>添加一个点 【在边缘上左击】</li>
+      <li>删除一个点 【Shift + 左击该点】</li>
+    </ul>
+  </li>
+  <li>给当前polygon添加label以生成object 【N】</li>
+  <li>删除object
+    <ul>
+      <li>选择object的polygon 【Ctrl + 左击】</li>
+      <li>删除object 【D】</li>
+    </ul>
+  </li>
+  <li>修改object的label
+    <ul>
+      <li>选择object的polygon 【Ctrl + 左击】</li>
+      <li>修改label 【M / L】</li>
+    </ul>
+  </li>
+  <li>取消选择object的polygon 【Q / Esc】</li>
+  <li>选择多个object 【Ctrl + 左击】</li>
+  <li>放大
+    <ul>
+      <li>进入放大模式 【Z / 按住鼠标右键】</li>
+      <li>调整放大系数 【鼠标滚轮】</li>
+      <li>调整放大范围 【Shift + 鼠标滚轮】</li>
+    </ul>
+  </li>
+  <li>两个polygon合并/取交
+    <ul>
+      <li>合并 【Ctrl + Alt + 左击object的polygon】</li>
+      <li>取交 【Ctrl + Shift + 左击object的polygon】</li>
+    </ul>
+  </li>
+  <li>改变object顺序
+    <ul>
+      <li>上移一层 【Up】</li>
+      <li>下移一层 【Down】</li>
+    </ul>
+  </li>
+  <li>改变mask不透明度
+    <ul>
+      <li>增加不透明度 【+】</li>
+      <li>减少不透明度 【-】</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="tips">你必须要知道的Tips</h2>
+
+<ol>
+  <li>
+    <p>polygon-RNN模式下修改polygon必须从离第一个点最近的点开始修改 <br /> 因为polygon-RNN模式下点是序列生成的，如果先改后面的点然后再改前面的点，那么后面的点的修改是不会被保存的。 注意生成的polygon都是逆时针的。</p>
+  </li>
+  <li>
+    <p>遇到部分遮挡怎么办？ <br /> 比如后面的车被前面车挡住了一部分。 在polygon-RNN模式下，选取遮挡部分第一个点，拖动到遮挡部分最后一个点附近。</p>
+  </li>
+  <li>
+    <p>遇到截断遮挡怎么办？ <br /> 比如一辆自行车被骑车的人遮挡成了两部分。 在polygon-RNN模式下， 一般会生成一个部分的polygon，拖动离另一部分最近的一个点到另一部分附近就可以将另一部分包括进来了。</p>
+  </li>
+  <li>
+    <p>polygon-RNN模式下重新选择bbox  <br /> 当前的bbox生成的polygon很不好，按两下【P】就可以重新选择bbox啦。 第一下【P】是退出polygon-RNN模式，第二下【P】是再次进入polygon-RNN模式。 可以感受一下选择不同大小的bbox对Polygon-RNN的影响哦。</p>
+  </li>
+  <li>
+    <p>快速选择label <br /> 在选择label对话框中按类别首字母。 上次选择的label会是下次选择的默认值，所以连续标同一类object就不用选择label了哦。</p>
+  </li>
+</ol>
+
+<h2 id="tips-1">你可能需要的Tips</h2>
+
+<ol>
+  <li>
+    <p>改变object顺序。 <br /> 正确的标注过程是从后往前标注，即先标被遮挡的object，再标遮挡别人的object。 如果不小心先标了前面的object，那么可以继续标被遮挡的object，然后按【Down】键下移一层。 注意只能在小范围使用这个功能，因为要是前移后移很多次，你也会搞不清到底这个object现在在哪一层。所以还是要按照从后往前的顺序标注哦。注意这样的话json文件中的object的位置会前移，但object的id不会改变，所以使用json文件的时候要按object的顺序来确定遮挡顺序，而不是根据object的id大小来确定。</p>
+  </li>
+  <li>
+    <p>为什么较大的object在polygon-RNN模式下不能精调点的位置？ <br /> 因为polygon-RNN的点是在28×28的分辨率下生成的， 所以object较大的情况下拖动点，会感觉点在“跳跃”。想要精修的话退出polygon-RNN模式，在人工模式下精修点的位置。</p>
+  </li>
+</ol>
+
+
+
+  <!-- Share -->
+  
+  <div class="post-share">
+    <hr>
+    <span>Share this: <br /></span>
+<a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/2017-09-18/ImgLabelToolTutorial/" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="ssk ssk-icon ssk-facebook"></a>
+<a href="https://twitter.com/intent/tweet?text=Polygon-RNN Image Label Tool HandBook&url=http://localhost:4000/2017-09-18/ImgLabelToolTutorial/" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="ssk ssk-icon ssk-twitter"></a>
+<a href="https://plus.google.com/share?url=http://localhost:4000/2017-09-18/ImgLabelToolTutorial/" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="ssk ssk-icon ssk-google-plus"></a>
+<a href="https://www.tumblr.com/share?url=http://localhost:4000/2017-09-18/ImgLabelToolTutorial/" onclick="window.open(this.href, 'mywin',
+'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="ssk ssk-icon ssk-tumblr"></a>
+<a href="mailto:?subject=Polygon-RNN Image Label Tool HandBook&amp;body=Check out this site http://localhost:4000/2017-09-18/ImgLabelToolTutorial/" class="ssk ssk-icon ssk-email"></a>
+
+    <hr>
+  </div>
+  
+
+  <!-- Disqus -->
+  
+  <section id="disqus_thread"></section>
+  <script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables */
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = '//namiyao.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  
+
+</div>
+
+
+    <!-- Documents about icons are here: http://fontawesome.io/icons/ -->
+<div class="footer">
+	<hr />
+	<div class="footer-link">
+		
+
+		
+
+		
+
+		
+
+		
+
+		
+
+		
+		<a href="mailto:disneydsy@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+		
+
+	</div>
+<!--	© 2016 Namiyao. All rights reserved.   -->
+	Namiyao
+</div>
+
+  </div>
+</body>
+</html>

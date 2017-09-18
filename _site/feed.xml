@@ -6,6 +6,115 @@
 		<atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
 		
 			<item>
+				<title>Polygon-RNN Image Label Tool HandBook</title>
+        <description>&lt;h2 id=&quot;section&quot;&gt;使用方法&lt;/h2&gt;
+
+&lt;p&gt;首先明确几个概念。 我们的目的是标注图中的object， 需要给出object的polygon和label。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;选择待标注图像文件夹 【O】&lt;/li&gt;
+  &lt;li&gt;人工模式生成polygon
+    &lt;ul&gt;
+      &lt;li&gt;生成polygon的点 【左击】&lt;/li&gt;
+      &lt;li&gt;删除上个生成的点 【Backspace】&lt;/li&gt;
+      &lt;li&gt;闭合polygon 【左击第一个点】&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;人工模式修改闭合的polygon
+    &lt;ul&gt;
+      &lt;li&gt;移动一个点 【按住鼠标左键并拖动该点】&lt;/li&gt;
+      &lt;li&gt;添加一个点 【在边缘上左击】&lt;/li&gt;
+      &lt;li&gt;删除一个点 【Shift + 左击该点】&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;polygon-RNN模式生成并修改polygon
+    &lt;ul&gt;
+      &lt;li&gt;进入Polygon-RNN模式 【P】&lt;/li&gt;
+      &lt;li&gt;给定目标周围的bbox 【按住鼠标左键并拖动】&lt;/li&gt;
+      &lt;li&gt;移动一个点 【按住鼠标左键并拖动该点】&lt;/li&gt;
+      &lt;li&gt;添加一个点 【在边缘上左击】&lt;/li&gt;
+      &lt;li&gt;删除一个点 【Shift + 左击该点】&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;给当前polygon添加label以生成object 【N】&lt;/li&gt;
+  &lt;li&gt;删除object
+    &lt;ul&gt;
+      &lt;li&gt;选择object的polygon 【Ctrl + 左击】&lt;/li&gt;
+      &lt;li&gt;删除object 【D】&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;修改object的label
+    &lt;ul&gt;
+      &lt;li&gt;选择object的polygon 【Ctrl + 左击】&lt;/li&gt;
+      &lt;li&gt;修改label 【M / L】&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;取消选择object的polygon 【Q / Esc】&lt;/li&gt;
+  &lt;li&gt;选择多个object 【Ctrl + 左击】&lt;/li&gt;
+  &lt;li&gt;放大
+    &lt;ul&gt;
+      &lt;li&gt;进入放大模式 【Z / 按住鼠标右键】&lt;/li&gt;
+      &lt;li&gt;调整放大系数 【鼠标滚轮】&lt;/li&gt;
+      &lt;li&gt;调整放大范围 【Shift + 鼠标滚轮】&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;两个polygon合并/取交
+    &lt;ul&gt;
+      &lt;li&gt;合并 【Ctrl + Alt + 左击object的polygon】&lt;/li&gt;
+      &lt;li&gt;取交 【Ctrl + Shift + 左击object的polygon】&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;改变object顺序
+    &lt;ul&gt;
+      &lt;li&gt;上移一层 【Up】&lt;/li&gt;
+      &lt;li&gt;下移一层 【Down】&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;改变mask不透明度
+    &lt;ul&gt;
+      &lt;li&gt;增加不透明度 【+】&lt;/li&gt;
+      &lt;li&gt;减少不透明度 【-】&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;tips&quot;&gt;你必须要知道的Tips&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;polygon-RNN模式下修改polygon必须从离第一个点最近的点开始修改 &lt;br /&gt; 因为polygon-RNN模式下点是序列生成的，如果先改后面的点然后再改前面的点，那么后面的点的修改是不会被保存的。 注意生成的polygon都是逆时针的。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;遇到部分遮挡怎么办？ &lt;br /&gt; 比如后面的车被前面车挡住了一部分。 在polygon-RNN模式下，选取遮挡部分第一个点，拖动到遮挡部分最后一个点附近。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;遇到截断遮挡怎么办？ &lt;br /&gt; 比如一辆自行车被骑车的人遮挡成了两部分。 在polygon-RNN模式下， 一般会生成一个部分的polygon，拖动离另一部分最近的一个点到另一部分附近就可以将另一部分包括进来了。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;polygon-RNN模式下重新选择bbox  &lt;br /&gt; 当前的bbox生成的polygon很不好，按两下【P】就可以重新选择bbox啦。 第一下【P】是退出polygon-RNN模式，第二下【P】是再次进入polygon-RNN模式。 可以感受一下选择不同大小的bbox对Polygon-RNN的影响哦。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;快速选择label &lt;br /&gt; 在选择label对话框中按类别首字母。 上次选择的label会是下次选择的默认值，所以连续标同一类object就不用选择label了哦。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;tips-1&quot;&gt;你可能需要的Tips&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;改变object顺序。 &lt;br /&gt; 正确的标注过程是从后往前标注，即先标被遮挡的object，再标遮挡别人的object。 如果不小心先标了前面的object，那么可以继续标被遮挡的object，然后按【Down】键下移一层。 注意只能在小范围使用这个功能，因为要是前移后移很多次，你也会搞不清到底这个object现在在哪一层。所以还是要按照从后往前的顺序标注哦。注意这样的话json文件中的object的位置会前移，但object的id不会改变，所以使用json文件的时候要按object的顺序来确定遮挡顺序，而不是根据object的id大小来确定。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;为什么较大的object在polygon-RNN模式下不能精调点的位置？ &lt;br /&gt; 因为polygon-RNN的点是在28×28的分辨率下生成的， 所以object较大的情况下拖动点，会感觉点在“跳跃”。想要精修的话退出polygon-RNN模式，在人工模式下精修点的位置。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+</description>
+				<pubDate>Mon, 18 Sep 2017 00:00:00 +0800</pubDate>
+				<link>http://localhost:4000/2017-09-18/ImgLabelToolTutorial/</link>
+				<guid isPermaLink="true">http://localhost:4000/2017-09-18/ImgLabelToolTutorial/</guid>
+			</item>
+		
+			<item>
 				<title>TRPO算法与代码解析</title>
         <description>&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
 &lt;p&gt;&lt;a href=&quot;http://karpathy.github.io/2016/05/31/rl/&quot;&gt;Andrej Karpathy&lt;/a&gt;指出，Policy Gradients (PG)是default的Reinforcement Learning (RL)算法。文章&lt;a href=&quot;https://arxiv.org/abs/1604.06778&quot;&gt;Benchmarking Deep Reinforcement Learning for Continuous Control&lt;/a&gt;指出，Truncated Natural Policy Gradient (TNPG)算法，Trust Region Policy Optimization (TRPO)算法，Deep Deterministic Policy Gradient (DDPG)算法取得了最好的实验结果。除此之外，文章中未提到的
@@ -40,7 +149,7 @@
 
 &lt;script type=&quot;math/tex; mode=display&quot;&gt;\widehat{\nabla_{\theta}J(\theta)}=\frac{1}{N}\sum_{n=1}^{N}\sum_{t=0}^{\infty}\hat A_{t}^{n}\nabla_{\theta}log\pi_\theta(a_{t}^{n}|s_{t}^{n})&lt;/script&gt;
 
-&lt;p&gt;一个方法是用REINFORCE算法估计$A^{\pi_{\theta}}(s,a)$。下一节使用另一个方法，用函数近似 $V^{\pi_{\theta}}(s)$ 来估计 $A^{\pi_{\theta}}(s,a)$。&lt;/p&gt;
+&lt;p&gt;一个方法是用MC算法估计$A^{\pi_{\theta}}(s,a)$。下一节使用另一个方法，用函数近似 $V^{\pi_{\theta}}(s)$ 来估计 $A^{\pi_{\theta}}(s,a)$。&lt;/p&gt;
 
 &lt;h2 id=&quot;advantage-function-estimation&quot;&gt;Advantage Function Estimation&lt;/h2&gt;
 &lt;p&gt;类似于 $TD(\lambda)$ 方法，以下都是 $A^{\pi_{\theta}}(s_{t},a_{t})$ 的估计&lt;/p&gt;
